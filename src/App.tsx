@@ -1,12 +1,15 @@
 import * as React from 'react';
-import Hello from './containers/EntranceContainer';
+import EntranceContainer from './containers/EntranceContainer';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { RouterPathEnum } from './enums/RouterPathEnum';
 import BookListContainer from './containers/BookListContainer';
-// import BookDetail from './components/BookDetail';
+import BookDetail from './components/BookDetail';
+import { RouteComponentProps } from '../node_modules/@types/react-router';
+import { BookState } from './states/BookState';
 
 export interface Props {
-  isLoggedIn: boolean
+  isLoggedIn: boolean,
+  booksData: BookState[]
 }
 
 class App extends React.Component<Props, {}> {
@@ -15,23 +18,32 @@ class App extends React.Component<Props, {}> {
   }
 
   public render() {
-    const checkAccount = () => {
-      if( !this.props.isLoggedIn ) {
-        return (
-          <Redirect to={RouterPathEnum.HOME} />
-        );
+    const isLoggedIn: boolean = this.props.isLoggedIn;
+
+    const renderHome = ( props:RouteComponentProps<any> ) => {
+      if( isLoggedIn ) {
+        return <Redirect to={RouterPathEnum.BOOK_LIST} />;
       }
-      return ;
+
+      return <EntranceContainer {...props} />;
+    }
+
+    const renderBookDetail = ( props:RouteComponentProps<any> ) => {
+      const nId: number = Number( props.match.params.id );
+
+      return <BookDetail {...props} bookState={ this.props.booksData[ nId ] } />;
     }
 
     return (
       <BrowserRouter>
         <div>
           <Switch>
-            <Route exact={true} path={RouterPathEnum.HOME} component={Hello}/>
-            { checkAccount() }
+            <Route exact={true} path={RouterPathEnum.HOME}
+              render={ (props) => renderHome( props ) } />
+            { (!isLoggedIn) ? <Redirect to={RouterPathEnum.HOME} /> : '' }
             <Route path={RouterPathEnum.BOOK_LIST} component={BookListContainer}/>
-            {/* <Route path={RouterPathEnum.BOOK_DETAIL + '/:id'} component={BookDetail}/> */}
+            <Route path={RouterPathEnum.BOOK_DETAIL + '/:id'} 
+              render={ (props) => renderBookDetail( props ) }/>
             <Redirect to={RouterPathEnum.HOME} />
           </Switch>
         </div>

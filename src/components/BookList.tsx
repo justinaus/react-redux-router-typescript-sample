@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RouteComponentProps, Redirect } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { RouterPathEnum } from '../enums/RouterPathEnum';
 import { Link } from 'react-router-dom';
 import { BookState } from '../states/BookState';
@@ -36,11 +36,11 @@ class BookList extends React.Component<Props, {}> {
     this.props.booksData.map((bookModel, i) => {
         return (
             <li key={i}>
-                <Link to={ RouterPathEnum.BOOK_DETAIL }>{ bookModel.title }</Link>
+                <Link to={ RouterPathEnum.BOOK_DETAIL + '/' + bookModel.id }>{ bookModel.title }</Link>
             </li>
         );
     })
-);
+  );
 
   private onClickAddBook():void {
     const nStartId: number = this.props.booksData.length;

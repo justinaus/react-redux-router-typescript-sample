@@ -5,7 +5,8 @@ import App from '../App';
 
 export function mapStateToProps( state: IStoreState) {
   return {
-    isLoggedIn: state.userState.isLoggedIn
+    isLoggedIn: state.userState.isLoggedIn,
+    booksData: state.bookState
   };
 }
 
