@@ -1,8 +1,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import { IStoreState, rootReducer } from './reducers';
+import { Store, createStore, applyMiddleware } from 'redux';
+import { logger } from 'redux-logger';
+import { Provider } from 'react-redux';
+import AppContainer from './containers/AppContainer';
+
+const store: Store<IStoreState> = createStore(
+  rootReducer, 
+  applyMiddleware( logger )
+);
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
   document.getElementById('root') as HTMLElement
 );
