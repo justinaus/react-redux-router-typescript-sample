@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { RouterPathEnum } from './enums/RouterPathEnum';
 import BookListContainer from './containers/BookListContainer';
 import BookDetail from './components/BookDetail';
-import { RouteComponentProps } from '../node_modules/@types/react-router';
+import { RouteComponentProps } from 'react-router';
 import { BookState } from './states/BookState';
 
 interface IProps {
