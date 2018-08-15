@@ -2,12 +2,12 @@ import * as React from 'react';
 import { BookState } from '../states/BookState';
 import { RouteComponentProps } from 'react-router';
 
-export interface Props extends RouteComponentProps<BookDetail> {
+interface IProps extends RouteComponentProps<BookDetail> {
     bookState: BookState
 }
 
-class BookDetail extends React.Component<Props, {}> {
-  constructor(props : Props){
+class BookDetail extends React.Component<IProps, {}> {
+  constructor(props : IProps){
     super(props);
   }
 

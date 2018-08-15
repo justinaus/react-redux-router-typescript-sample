@@ -4,14 +4,14 @@ import { RouterPathEnum } from '../enums/RouterPathEnum';
 import { Link } from 'react-router-dom';
 import { BookState } from '../states/BookState';
 
-export interface Props extends RouteComponentProps<BookList>{
+interface IProps extends RouteComponentProps<BookList>{
   booksData: BookState[];
   onAddBook: ( bookData: BookState ) => void;
   onAddMultipleBooks: ( booksData: BookState[] ) => void;
 }
 
-class BookList extends React.Component<Props, {}> {
-  constructor(props : Props){
+class BookList extends React.Component<IProps, {}> {
+  constructor(props : IProps){
     super(props);
 
     this.onClickAddBook = this.onClickAddBook.bind(this);

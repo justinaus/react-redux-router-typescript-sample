@@ -3,14 +3,14 @@ import { KeycodeEnum } from '../enums/KeycodeEnum';
 import { RouteComponentProps } from 'react-router';
 import { RouterPathEnum } from '../enums/RouterPathEnum';
 
-export interface Props extends RouteComponentProps<Entrance> {
+interface IProps extends RouteComponentProps<Entrance> {
   onCreateAccount: ( userName: string ) => void;
 }
 
-class Entrance extends React.Component<Props, {}> {
+class Entrance extends React.Component<IProps, {}> {
   private hasAccount: boolean = false;
 
-  constructor(props : Props){
+  constructor(props : IProps){
     super(props);
 
     this.onKeyUpHandler = this.onKeyUpHandler.bind( this );

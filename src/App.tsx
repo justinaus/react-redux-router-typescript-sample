@@ -7,13 +7,13 @@ import BookDetail from './components/BookDetail';
 import { RouteComponentProps } from '../node_modules/@types/react-router';
 import { BookState } from './states/BookState';
 
-export interface Props {
+interface IProps {
   isLoggedIn: boolean,
   booksData: BookState[]
 }
 
-class App extends React.Component<Props, {}> {
-  constructor(props : Props){
+class App extends React.Component<IProps, {}> {
+  constructor(props : IProps){
     super(props);
   }
 
