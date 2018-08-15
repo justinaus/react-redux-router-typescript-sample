@@ -12,9 +12,6 @@ class Entrance extends React.Component<IProps, {}> {
 
   constructor(props : IProps){
     super(props);
-
-    this.onKeyUpHandler = this.onKeyUpHandler.bind( this );
-    this.createAccount = this.createAccount.bind( this );
   }
 
   render() {
@@ -36,14 +33,14 @@ class Entrance extends React.Component<IProps, {}> {
     );
   }
 
-  private onKeyUpHandler( e: React.KeyboardEvent ): void {
+  private onKeyUpHandler = ( e: React.KeyboardEvent ) => {
     if( e.keyCode != KeycodeEnum.ENTER )  return;
 
     const input: HTMLInputElement = e.target as HTMLInputElement;
     this.createAccount( input.value );
   }
 
-  private createAccount( strInput: string ): void {
+  private createAccount = ( strInput: string ) => {
     if( this.hasAccount  )  return;
 
     if( !strInput ) {

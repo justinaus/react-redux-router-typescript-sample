@@ -13,9 +13,6 @@ interface IProps extends RouteComponentProps<BookList>{
 class BookList extends React.Component<IProps, {}> {
   constructor(props : IProps){
     super(props);
-
-    this.onClickAddBook = this.onClickAddBook.bind(this);
-    this.onClickAddMultipleBooks = this.onClickAddMultipleBooks.bind(this);
   }
 
   render() {
@@ -42,7 +39,7 @@ class BookList extends React.Component<IProps, {}> {
     })
   );
 
-  private onClickAddBook():void {
+  private onClickAddBook = () => {
     const nStartId: number = this.props.booksData.length;
 
     const bookModel: BookState = this.makeRandomBookModel( nStartId );
@@ -50,7 +47,7 @@ class BookList extends React.Component<IProps, {}> {
     this.props.onAddBook( bookModel );
   }
 
-  private onClickAddMultipleBooks(): void {
+  private onClickAddMultipleBooks = () => {
     const COUNT:number = 4;
 
     const arrRet: BookState[] = [];
@@ -68,7 +65,7 @@ class BookList extends React.Component<IProps, {}> {
     this.props.onAddMultipleBooks( arrRet );
   }
 
-  private makeRandomBookModel( nId: number ): BookState {
+  private makeRandomBookModel = ( nId: number ): BookState => {
     return new BookState( nId, 'book' + nId );
   }
 }
